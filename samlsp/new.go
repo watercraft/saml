@@ -24,6 +24,7 @@ type Options struct {
 	SignRequest       bool
 	ForceAuthn        bool // TODO(ross): this should be *bool
 	CookieSameSite    http.SameSite
+	CookiePath        string
 	RelayStateFunc    func(w http.ResponseWriter, r *http.Request) string
 }
 
@@ -49,6 +50,7 @@ func DefaultSessionProvider(opts Options) CookieSessionProvider {
 		HTTPOnly: true,
 		Secure:   opts.URL.Scheme == "https",
 		SameSite: opts.CookieSameSite,
+		Path:     opts.CookiePath,
 		Codec:    DefaultSessionCodec(opts),
 	}
 }
@@ -75,6 +77,7 @@ func DefaultRequestTracker(opts Options, serviceProvider *saml.ServiceProvider) 
 		MaxAge:          saml.MaxIssueDelay,
 		RelayStateFunc:  opts.RelayStateFunc,
 		SameSite:        opts.CookieSameSite,
+		Path:            opts.CookiePath,
 	}
 }
 
