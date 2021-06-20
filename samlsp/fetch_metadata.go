@@ -9,10 +9,10 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/crewjam/httperr"
+	"github.com/watercraft/httperr"
 	xrv "github.com/mattermost/xml-roundtrip-validator"
 
-	"github.com/crewjam/saml"
+	"github.com/watercraft/saml"
 )
 
 // ParseMetadata parses arbitrary SAML IDP metadata.
